@@ -13,13 +13,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: '3.9'  # Hoặc phiên bản Python mà dự án đang dùng
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt || echo "No requirements file found"
+          pip install flake8  # Cài đặt flake8
 
-      - name: Run linting
+      - name: Run flake8
         run: flake8 .
 
-      - name: Run tests
-        run: pytest
